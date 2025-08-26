@@ -55,7 +55,7 @@ AboutPage.Layout = Layout;
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const lang = getLocaleId(locale);
   const about = await About(lang);
-  console.log(about);
+
   return {
     props: {
       ...(await serverSideTranslations(locale!, [

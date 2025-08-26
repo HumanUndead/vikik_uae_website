@@ -135,7 +135,7 @@ export const footerContemporary = {
         {
           id: 1,
           title: "link-instagram",
-          path: "https://www.instagram.com/redqinc/",
+          path: "https://www.instagram.com/vikikfashion.ae?igsh=MWdvODRhN2xocjFvNg==",
           icon: <IoLogoInstagram />,
         },
         {

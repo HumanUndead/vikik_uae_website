@@ -12,7 +12,7 @@ interface ordersTableProps {
 }
 
 const OrdersTable: React.FC<ordersTableProps> = ({ orders }) => {
-  console.log(orders);
+  const price = process.env.NEXT_PUBLIC_CURRENCY || "AED";
   const { width } = useSsrCompatible(useWindowSize(), { width: 0, height: 0 });
   const { t } = useTranslation("common");
   return (
@@ -76,7 +76,7 @@ const OrdersTable: React.FC<ordersTableProps> = ({ orders }) => {
                     {getCartStatus(order.Status)}
                   </td>
                   <td className="px-4 py-5 ltr:text-left rtl:text-right lg:text-center text-heading">
-                    {order.OrderTotal} JOD
+                    {order.OrderTotal} {price}
                   </td>
                   <td className="px-4 py-5 ltr:text-right rtl:text-left text-heading">
                     <Link
@@ -126,7 +126,9 @@ const OrdersTable: React.FC<ordersTableProps> = ({ orders }) => {
                 </li>
                 <li className="flex items-center justify-between">
                   {t("text-total")}
-                  <span className="font-normal">{order.OrderTotal} JOD</span>
+                  <span className="font-normal">
+                    {order.OrderTotal} {price}
+                  </span>
                 </li>
                 <li className="flex items-center justify-between">
                   {t("text-actions")}

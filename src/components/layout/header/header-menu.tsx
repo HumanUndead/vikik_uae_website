@@ -47,7 +47,7 @@ const HeaderMenu: React.FC<MenuProps> = ({ className, home }) => {
             className="relative inline-flex items-center  text-sm font-normal xl:text-base text-heading xl:px-4 group-hover:text-black"
           >
             {item?.Name}
-            {item?.StaticMenuItems && (
+            {item?.StaticMenuItems?.length > 0 && (
               <span className="opacity-30 text-xs mt-1 xl:mt-0.5 w-4 flex justify-end">
                 <FaChevronDown className="transition duration-300 ease-in-out transform group-hover:-rotate-180" />
               </span>
@@ -58,8 +58,8 @@ const HeaderMenu: React.FC<MenuProps> = ({ className, home }) => {
             <MegaMenu columns={item.columns} />
           )} */}
 
-          {item?.StaticMenuItems && Array.isArray(item?.StaticMenuItems) && (
-            <div className="absolute invisible bg-gray-200 opacity-0 group-hover:visible subMenu shadow-header ltr:left-0 rtl:right-0 group-hover:opacity-100">
+          <div className="absolute invisible bg-gray-200 opacity-0 group-hover:visible subMenu shadow-header ltr:left-0 rtl:right-0 group-hover:opacity-100">
+            {item?.StaticMenuItems?.length > 0 && (
               <ul className="py-5 text-sm text-body">
                 {item?.StaticMenuItems?.map((menu: any, index: number) => {
                   const dept: number = 1;
@@ -77,8 +77,8 @@ const HeaderMenu: React.FC<MenuProps> = ({ className, home }) => {
                   );
                 })}
               </ul>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       ))}
     </nav>

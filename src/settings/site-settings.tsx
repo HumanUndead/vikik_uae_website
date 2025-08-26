@@ -35,7 +35,7 @@ export const siteSettings = {
     height: 30,
   },
   defaultLanguage: "en",
-  currencyCode: "JOD",
+  currencyCode: "AED",
   site_header: {
     menu: [
       {

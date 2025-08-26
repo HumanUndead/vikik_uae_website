@@ -1,23 +1,20 @@
-import axios, {
-    AxiosInstance,
-    AxiosRequestConfig,
-  } from "axios";
-  
-  const DEFAULT_TIMEOUT = 10000; // 10 seconds
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-  
-  const apiClient = (): AxiosInstance => {
-    const axiosConfig: AxiosRequestConfig = {
-      baseURL: API_URL,
-      timeout: DEFAULT_TIMEOUT,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-  
-    const instance: AxiosInstance = axios.create(axiosConfig);
-  
-    /* const requestHandler = (
+import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
+
+const DEFAULT_TIMEOUT = 10000; // 10 seconds
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+const apiClient = (): AxiosInstance => {
+  const axiosConfig: AxiosRequestConfig = {
+    baseURL: API_URL,
+    timeout: DEFAULT_TIMEOUT,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+  const instance: AxiosInstance = axios.create(axiosConfig);
+
+  /* const requestHandler = (
       request: InternalAxiosRequestConfig
     ): InternalAxiosRequestConfig => {
       const userToken: string | null = "";
@@ -46,21 +43,8 @@ import axios, {
       (response: AxiosResponse) => response,
       onResponseError
     ); */
-  
-    return instance;
-  };
-  
-  export default apiClient;
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+  return instance;
+};
+
+export default apiClient;

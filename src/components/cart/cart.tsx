@@ -16,9 +16,10 @@ export default function Cart() {
   const { t } = useTranslation("common");
   const { closeCart } = useUI();
   const { items, total, isEmpty } = useCart();
+  const price = process.env.NEXT_PUBLIC_CURRENCY || "AED";
   const { price: cartTotal } = usePrice({
     amount: total,
-    currencyCode: "JOD",
+    currencyCode: price,
   });
 
   return (
@@ -67,6 +68,9 @@ export default function Cart() {
       >
         <Link
           href={isEmpty === false ? ROUTES.CHECKOUT : "/"}
+          onClick={() => {
+            console.log("first");
+          }}
           className={cn(
             "w-full px-5 py-3 md:py-4 flex items-center justify-center rounded-md text-sm sm:text-base text-white focus:outline-none transition duration-300 ",
             isEmpty
@@ -87,3 +91,30 @@ export default function Cart() {
     </div>
   );
 }
+
+// <image width="64" height="64" resizeMode="Transparent" anchor="Center" imageFormat="png" baseImage="~/images/base_64x64.png"/>
+// <image width="350" height="350" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_350x350.jpg"/>
+// <image width="400" height="400" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_400x400.jpg" />
+// <image width="500" height="500" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_500x500.jpg"/>
+// <image width="600" height="600" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_600x600.jpg"/>
+// <image width="700" height="700" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_700x700.jpg"/>
+// <image width="800" height="800" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_800x800.jpg" />
+// <image width="200" height="200" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_200x200.jpg" />
+// <image width="760" height="400" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_760x400.jpg"/>
+// <image width="1000" height="400" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_1000x400.jpg" />
+// <image width="1440" height="768" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_1440x768.jpg" />
+// <image width="293" height="123" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_293x123.jpg"/>
+// <image width="1280" height="290" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_1280x290.jpg"/>
+// <image width="1920" height="250" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_1920x250.jpg"/>
+// <image width="1920" height="1280" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_1920x1280.jpg" />
+// <image width="800" height="800" resizeMode="Transparent" anchor="Center" imageFormat="png" baseImage="~/images/base_800x800.png" />
+// <image width="435" height="574" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_435x574.jpg"/>
+// <image width="800" height="400" resizeMode="Transparent" anchor="Center" imageFormat="jpg" baseImage="~/images/base_800x400.jpg" />
+// <image width="432" height="200" resizeMode="Transparent" anchor="Center" imageFormat="jpg" />
+// <image width="467" height="619" resizeMode="Transparent" anchor="Center" imageFormat="jpg" />
+// <image width="432" height="200" resizeMode="Transparent" anchor="Center" imageFormat="png" baseImage="~/images/base_432x200.png" />
+// <image width="500" height="250" resizeMode="Transparent" anchor="Center" imageFormat="jpg" />
+// <image width="800" height="400" resizeMode="Transparent" anchor="Center" imageFormat="png" />
+// <image width="1920" height="1280" resizeMode="Transparent" anchor="Center" imageFormat="png" />
+// <image width="520" height="450" resizeMode="Transparent" anchor="Center" imageFormat="png" />
+// <image width="300" height="360" resizeMode="Transparent" anchor="Center" imageFormat="png" />

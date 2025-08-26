@@ -36,7 +36,7 @@ OurBranches.Layout = Layout;
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   const lang = getLocaleId(locale);
-  const ourBranches = await GetPages("10015", lang);
+  const ourBranches = await GetPages("10017", lang);
 
   return {
     props: {

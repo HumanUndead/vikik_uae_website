@@ -11,6 +11,7 @@ import { methodDelivery } from "@settings/method-delivery";
 
 export default function OrderInformation({ orderId }: any) {
   const [order, setOrder] = useState<string | undefined>(undefined);
+  const price = process.env.NEXT_PUBLIC_CURRENCY || "AED";
 
   const fetchOrder = async () => {
     const orderDetails = await UserOrderGet(
@@ -67,7 +68,7 @@ export default function OrderInformation({ orderId }: any) {
           <span className="uppercase text-[11px] block text-body font-normal leading-5">
             {t("text-total")}:
           </span>
-          {order?.OrderTotal} JOD
+          {order?.OrderTotal} {price}
         </li>
         <li className="text-heading font-semibold text-base lg:text-lg border-b md:border-b-0 md:border-r border-dashed border-gray-300 px-4 lg:px-6 xl:px-8 py-4 md:py-5 lg:py-6 last:border-0">
           <span className="uppercase text-[11px] block text-body font-normal leading-5">

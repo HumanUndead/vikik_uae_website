@@ -93,7 +93,7 @@ const CategoryBlock: React.FC<CategoriesProps> = ({
             })
           : data
               ?.filter((category) =>
-                ["70443", "70434", "70483", "70431"].includes(category.Id)
+                ["70443", "70434", "70479", "70431"].includes(category.Id)
               )
               .map((category) => (
                 <SwiperSlide

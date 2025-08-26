@@ -5,7 +5,6 @@ import { useUI } from "@contexts/ui.context";
 import ProductViewIcon from "@components/icons/product-view-icon";
 import ProductWishIcon from "@components/icons/product-wish-icon";
 import ProductCompareIcon from "@components/icons/product-compare-icon";
-import RatingDisplay from "@components/common/rating-display";
 import { Product } from "src/api/type";
 
 interface ProductProps {
@@ -115,7 +114,7 @@ const ProductCard: FC<ProductProps> = ({
           src={
             process.env.NEXT_PUBLIC_BASE_API_URL +
             product.FullImagePath +
-            ".jpg"
+            "_600X720.jpg"
           }
           width={demoVariant === "ancient" ? 600 : Number(imgWidth)}
           height={demoVariant === "ancient" ? 720 : Number(imgHeight)}
@@ -169,10 +168,6 @@ const ProductCard: FC<ProductProps> = ({
           contactClassName
         )}
       >
-        {/* <div className="flex flex-col md:flex-row md:items-center lg:flex-row xl:flex-row 2xl:flex-row  mb-0.5 items-start">
-          <RatingDisplay rating={product.Rating} />
-        </div> */}
-
         <h2
           className={cn("truncate mb-1", {
             "text-sm md:text-base": variant === "grid",

@@ -1054,3 +1054,28 @@ export interface OrderAddressResponse {
   userID: string;
   value: string | null;
 }
+
+interface Lang {
+  ID: string;
+  Name: string | null;
+  Encoding: string | null;
+  Direction: string | null;
+  InverseDirection: boolean;
+}
+
+interface page {
+  ContentType: number;
+  Date: string;
+  Description: string;
+  ID: number;
+  Keywords: string;
+  Label: string;
+  Lang: Lang;
+  Name: string;
+  Path: string | null;
+  Placement: number;
+  ShortDescription: string;
+  SubTitle: string;
+  Text: string;
+  Title: string;
+}
