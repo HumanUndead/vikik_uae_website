@@ -5,14 +5,22 @@ import { Link, Element } from "react-scroll";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import { GetStaticProps } from "next";
-import { About } from "src/api/routs";
+import { About, GetPages } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import Image from "next/image";
+import Head from "next/head";
+import { stripHTML } from "@utils/convertHtml";
 
 export default function AboutPage({ about }: any) {
   const { t } = useTranslation("privacy");
+
   return (
     <>
+      <Head>
+        <title>{about?.Label}</title>
+        <meta name="description" content={stripHTML(about?.Text)} />
+      </Head>
+
       {/* <PageHeader pageHeader={about?.AboutUs?.Label} /> */}
       <Container>
         <div className="flex flex-col md:flex-row gap-4">
@@ -24,7 +32,7 @@ export default function AboutPage({ about }: any) {
                   <div
                     className="text-sm leading-7 text-heading lg:text-base lg:leading-loose"
                     dangerouslySetInnerHTML={{
-                      __html: t(`${about?.AboutUs?.Text}`),
+                      __html: t(`${about?.Text}`),
                     }}
                   />
                 </Element>
@@ -54,7 +62,7 @@ AboutPage.Layout = Layout;
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const lang = getLocaleId(locale);
-  const about = await About(lang);
+  const about = await GetPages("3", lang);
 
   return {
     props: {

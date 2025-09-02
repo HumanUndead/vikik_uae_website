@@ -1,8 +1,6 @@
 import ProductCard from "@components/product/product-card";
-import Button from "@components/ui/button";
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useState, useRef, type FC } from "react";
 import ProductFeedLoader from "@components/ui/loaders/product-feed-loader";
-import { useTranslation } from "next-i18next";
 import { prdoucstWithpages, Product } from "src/api/type";
 import { useRouter } from "next/router";
 import { usePathname } from "next/navigation";
@@ -12,13 +10,13 @@ interface ProductGridProps {
   data: prdoucstWithpages;
 }
 export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
-  const { t } = useTranslation("common");
   const router = useRouter();
   const path = usePathname();
   const { query } = router;
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [pageSize, setPageSize] = useState<number>(Number(query.page) || 1);
   const [load, setLoad] = useState(false);
+  const loadMoreRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (query.page) {
@@ -39,6 +37,42 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
   }, [data?.products]);
 
   const totalPages = Math.ceil(data?.pages / 20);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && pageSize < totalPages && !load) {
+          setLoad(true);
+          router.replace(
+            {
+              pathname: `/${path}`,
+              query: {
+                ...query,
+                page: pageSize + 1,
+              },
+            },
+            undefined,
+            { scroll: false }
+          );
+        }
+      },
+      {
+        root: null,
+        threshold: 0.0,
+      }
+    );
+
+    if (loadMoreRef.current) {
+      observer.observe(loadMoreRef.current);
+    }
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [pageSize, totalPages, load, query, router, path]);
+
   return (
     <>
       <div
@@ -47,38 +81,17 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
         {!allProducts?.length ? (
           <ProductFeedLoader limit={20} uniqueKey="search-product" />
         ) : (
-          allProducts?.map((page) => (
+          allProducts?.map((product) => (
             <ProductCard
-              key={`product--key${page.ID}`}
-              product={page}
+              key={`product--key${product.ID}`}
+              product={product}
               variant="grid"
             />
           ))
         )}
       </div>
-      <div className="text-center pt-8 xl:pt-14">
-        {pageSize < totalPages && (
-          <Button
-            variant="slim"
-            onClick={() => {
-              setLoad(true);
-              router.replace(
-                {
-                  pathname: `/${path}`,
-                  query: {
-                    ...query,
-                    page: pageSize + 1,
-                  },
-                },
-                undefined,
-                { scroll: false }
-              );
-            }}
-          >
-            {t("button-load-more")}
-          </Button>
-        )}
-      </div>
+
+      <div ref={loadMoreRef} className="h-10"></div>
     </>
   );
 };

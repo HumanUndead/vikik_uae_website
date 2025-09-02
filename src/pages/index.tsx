@@ -7,10 +7,20 @@ import { GetServerSideProps } from "next";
 import { GetCategory } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import IconsHome from "@containers/icons-home";
+import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 export default function Home({ category }: { category: any }) {
+  const { t } = useTranslation("common");
   return (
     <>
+      <Head>
+        <title>{t("text-vikik")}</title>
+        <meta
+          name="description"
+          content="Shop the latest dresses, tops, and abayas at Vikik. Enjoy exclusive offers, loyalty points, and fast delivery across Jordan from our online fashion store"
+        />
+      </Head>
       <Container>
         <CategoryBlock
           sectionHeading="text-shop-by-category"

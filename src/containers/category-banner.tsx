@@ -17,7 +17,7 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
   const categoryId = slug?.toString().split("&")[1];
 
   const content = "content/categoriesIcon";
-  //vikikfashion.com/content/categoriesIcon/70431.png
+
   https: return (
     <div
       className={`bg-gray-200 rounded-md relative flex flex-row ${className}`}

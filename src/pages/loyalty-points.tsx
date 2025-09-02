@@ -6,10 +6,16 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetPages } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import { GetStaticProps } from "next";
+import { stripHTML } from "@utils/convertHtml";
+import Head from "next/head";
 
 export default function LoyaltyPoint({ loyaltyPoint }: any) {
   return (
     <>
+      <Head>
+        <title>{loyaltyPoint?.Label}</title>
+        <meta name="description" content={stripHTML(loyaltyPoint?.Text)} />
+      </Head>
       <PageHeader pageHeader={loyaltyPoint.Label} />
       <div className="mt-12 lg:mt-14 xl:mt-16 lg:py-1 xl:py-0 border-b border-gray-300 px-4 md:px-10 lg:px-7 xl:px-16 2xl:px-24 3xl:px-32 pb-9 md:pb-14 lg:pb-16 2xl:pb-20 3xl:pb-24">
         <Container>

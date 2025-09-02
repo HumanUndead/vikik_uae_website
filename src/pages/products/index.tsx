@@ -15,6 +15,7 @@ import { GetServerSideProps } from "next";
 import { GetProductsCategory } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import { prdoucstWithpages } from "src/api/type";
+import Head from "next/head";
 interface categoryProps {
   categoryData: prdoucstWithpages;
 }
@@ -23,6 +24,9 @@ export default function Products({ categoryData }: categoryProps) {
 
   return (
     <>
+      <Head>
+        <title>{t("breadcrumb-products")}</title>
+      </Head>
       <Container>
         <div className={`flex pt-8 pb-16 lg:pb-20`}>
           <div className="flex-shrink-0 ltr:pr-24 rtl:pl-24 hidden lg:block w-96">

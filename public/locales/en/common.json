@@ -60,6 +60,7 @@
   "text-gender": "Gender",
   "text-account-details": "Account Details",
   "text-account-address": "Address",
+  "text-delete-account": "Delete Account",
   "text-change-your-password": "change your password",
   "text-logout": "Logout",
   "text-unit-price": "Unit Price",
@@ -94,6 +95,7 @@
   "text-have-account": "Already have an account?",
   "text-back-to": "Back to",
   "text-login": "Login",
+  "text-deleted": "Delete Account",
   "text-sign-in": "Sign In",
   "text-register": "Register",
   "text-terms": "terms",
@@ -240,5 +242,8 @@
   "color": "Color",
   "sizes": "Sizes",
   "category": "Category",
-  "Jordan": "Jordan"
+  "Jordan": "Jordan",
+  "please-fill-cart": "Please Fill Cart",
+  "please-login": "Please sign in",
+  "text-vikik": "Vikik – Shop Dresses, Tops & Abayas Online in United Arab Emirates"
 }

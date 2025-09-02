@@ -8,6 +8,7 @@ import { GetServerSideProps } from "next";
 import { GetProductsCategory } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import { prdoucstWithpages } from "src/api/type";
+import Head from "next/head";
 
 interface categoryProps {
   categoryData: prdoucstWithpages;
@@ -15,15 +16,20 @@ interface categoryProps {
 
 export default function Category({ categoryData }: categoryProps) {
   return (
-    <div className="border-t-2 border-borderBottom">
-      <Container>
-        <CategoryBanner />
-        <div className="pb-16 lg:pb-20">
-          <ProductGrid className="3xl:grid-cols-6" data={categoryData} />
-        </div>
-        <Subscription />
-      </Container>
-    </div>
+    <>
+      <Head>
+        <title>{categoryData.products[0].CategoryName}</title>
+      </Head>
+      <div className="border-t-2 border-borderBottom">
+        <Container>
+          <CategoryBanner />
+          <div className="pb-16 lg:pb-20">
+            <ProductGrid className="3xl:grid-cols-6" data={categoryData} />
+          </div>
+          <Subscription />
+        </Container>
+      </div>
+    </>
   );
 }
 

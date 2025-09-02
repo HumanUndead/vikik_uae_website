@@ -8,14 +8,24 @@ import { GetServerSideProps } from "next";
 import { getLocaleId } from "@utils/locale-mapping";
 import { CitiesGet, GetAddress } from "src/api/routs";
 import { Address, City } from "src/api/type";
+import Head from "next/head";
 
 interface addressProps {
   address: Address[];
   cities: City[];
+  locale: string;
 }
-export default function CheckoutPage({ address, cities }: addressProps) {
+export default function CheckoutPage({
+  address,
+  cities,
+  locale,
+}: addressProps) {
   return (
     <>
+      {/* <Head>
+        <title>{locale == "en" ? "Checkout" : ""}</title>
+      </Head> */}
+
       <PageHeader pageHeader="text-page-checkout" />
       <Container>
         <div className="py-14 xl:py-20 px-0 2xl:max-w-screen-2xl xl:max-w-screen-xl mx-auto flex flex-col md:flex-row w-full">
@@ -51,6 +61,7 @@ export const getServerSideProps: GetServerSideProps = async ({
       ])),
       address: addresses,
       cities: cities,
+      locale: locale,
     },
   };
 };

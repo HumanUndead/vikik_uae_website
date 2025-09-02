@@ -34,7 +34,6 @@ const Card: React.FC<Props> = ({
     (size === "medium" && 198);
 
   const { t } = useTranslation("common");
-
   return (
     <Link
       href={href}
@@ -43,19 +42,18 @@ const Card: React.FC<Props> = ({
       <div
         className={`relative inline-flex mb-3.5 md:mb-4 lg:mb-5 xl:mb-6 mx-auto rounded-full w-full`}
       >
-        <div className="flex w-full md:h-[460px] 2xl:h-[600px]">
+        <div className="flex w-full h-[400px] md:h-[450px] min-[1600px]:h-[580px] ">
           <Image
             src={
               process.env.NEXT_PUBLIC_BASE_API_URL +
               FullImagePath +
-              "_450X530.webp"
+              "_600X600.webp"
             }
             alt={name || t("text-card-thumbnail")}
-            width={600}
-            height={900}
+            fill
             quality={100}
             unoptimized
-            className={` bg-gray-300 w-full h-full ${
+            className={` bg-gray-300 object-cover ${
               !disableBorderRadius &&
               (variant === "rounded" ? "rounded-md" : "rounded-full")
             }`}

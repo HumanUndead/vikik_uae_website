@@ -10,13 +10,20 @@ import { GetServerSideProps } from "next";
 import { GetProductDetails } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import { Product } from "src/api/type";
+import Head from "next/head";
+import { useTranslation } from "react-i18next";
 
 interface ProductPageProps {
   productDetails: { product: Product; sizes: Product[] };
 }
 export default function ProductPage({ productDetails }: ProductPageProps) {
+  const { t } = useTranslation("common");
   return (
     <>
+      <Head>
+        <title>{productDetails.product.Name}</title>
+        <meta name="description" content={productDetails.product.Description} />
+      </Head>
       <Divider className="mb-0" />
       <Container>
         <div className="pt-8">
@@ -37,9 +44,7 @@ ProductPage.Layout = Layout;
 
 export const getServerSideProps: GetServerSideProps = async (props) => {
   const { locale, query } = props;
-
   const localeId = getLocaleId(locale);
-
   const productId = query.slug?.toString();
 
   const productDetails = await GetProductDetails(productId, localeId);

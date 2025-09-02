@@ -29,7 +29,7 @@ const Widgets: React.FC<WidgetsProps> = ({ widgets }) => {
   const lang = useLanguageCode();
   const { data } = useQuery({
     queryKey: ["WorkUs", lang],
-    queryFn: () => GetPages("10014", lang),
+    queryFn: () => GetPages("10018", lang),
   });
 
   const stripHtmlTags = (html: string | undefined): string => {

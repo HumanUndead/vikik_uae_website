@@ -22,7 +22,7 @@ const IconLink = ({ href, icon, label, className }: IconLinkProps) => (
     )}
   >
     <div className="p-3 rounded-full bg-gray-50 mb-3">{icon}</div>
-    <span className="text-[12px] md:text-base font-medium text-gray-800 text-center ">
+    <span className="text-[12px] md:text-base font-medium text-gray-800 text-center">
       {label}
     </span>
   </Link>

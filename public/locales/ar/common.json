@@ -60,6 +60,7 @@
   "text-gender": "الجنس",
   "text-account-details": "تفاصيل الحساب",
   "text-account-address": "العنوان",
+  "text-delete-account": "حذف الحساب",
   "text-change-your-password": "تغيير كلمة المرور",
   "text-logout": "تسجيل الخروج",
   "text-unit-price": "سعر الوحدة",
@@ -94,6 +95,7 @@
   "text-have-account": "هل لديك حساب بالفعل؟",
   "text-back-to": "العودة إلى",
   "text-login": "تسجيل الدخول",
+  "text-deleted": "حذف الحساب",
   "text-sign-in": "تسجيل الدخول",
   "text-register": "تسجيل",
   "text-terms": "الشروط",
@@ -238,5 +240,8 @@
   "color": "اللون",
   "sizes": "المقاسات",
   "category": "الفئة",
-  "Jordan": "الأردن"
+  "Jordan": "الأردن",
+  "please-fill-cart": "يرجى ملء السلة",
+  "please-login": "يرجى تسجيل الدخول",
+  "text-vikik": "فيكيك - تسوق فساتين وبلوزات وعبايات اون لاين في الإمارات العربية المتحدة"
 }

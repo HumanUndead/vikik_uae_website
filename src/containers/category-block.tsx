@@ -20,7 +20,7 @@ interface CategoriesProps {
 
 const CategoryBlock: React.FC<CategoriesProps> = ({
   data = [],
-  className = "mb-10 md:mb-11 lg:mb-12 xl:mb-14 lg:pb-1 xl:pb-0",
+  className = "",
   type = "rounded",
   roundedItemCount,
   roundedSpaceBetween = 20,
@@ -37,7 +37,7 @@ const CategoryBlock: React.FC<CategoriesProps> = ({
     },
     "1200": {
       slidesPerView: 4,
-      spaceBetween: roundedSpaceBetween || 20,
+      spaceBetween: roundedSpaceBetween || 15,
     },
     "1024": {
       slidesPerView: 3.2,
@@ -93,7 +93,9 @@ const CategoryBlock: React.FC<CategoriesProps> = ({
             })
           : data
               ?.filter((category) =>
-                ["70443", "70434", "70479", "70431"].includes(category.Id)
+                ["70443", "70434", "70479", "70431", "70480"].includes(
+                  category.Id
+                )
               )
               .map((category) => (
                 <SwiperSlide
