@@ -22,10 +22,6 @@ export default function CheckoutPage({
 }: addressProps) {
   return (
     <>
-      {/* <Head>
-        <title>{locale == "en" ? "Checkout" : ""}</title>
-      </Head> */}
-
       <PageHeader pageHeader="text-page-checkout" />
       <Container>
         <div className="py-14 xl:py-20 px-0 2xl:max-w-screen-2xl xl:max-w-screen-xl mx-auto flex flex-col md:flex-row w-full">

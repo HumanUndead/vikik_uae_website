@@ -1,5 +1,4 @@
 import Container from "@components/ui/container";
-import { siteSettings } from "@settings/site-settings";
 import { useTranslation } from "next-i18next";
 import { AiOutlineArrowUp } from "react-icons/ai";
 import cn from "classnames";
@@ -17,7 +16,7 @@ interface CopyrightProps {
   }[];
   variant?: "contemporary";
 }
-const year = new Date().getFullYear();
+
 const Copyright: React.FC<CopyrightProps> = ({ payment, variant }) => {
   const { t } = useTranslation("footer");
   return (
@@ -35,19 +34,23 @@ const Copyright: React.FC<CopyrightProps> = ({ payment, variant }) => {
             "p-0 m-0": variant === "contemporary",
           })}
         >
-          Powerd BY &nbsp;
-          <Image
-            src="/assets/images/ken.png"
-            alt="ken"
-            width={130}
-            height={130}
-            priority
-            className="object-contain inline-block"
-          />
+          Powerd By &nbsp;
           <a
-            className="font-semibold text-gray-700 transition-colors duration-200 ease-in-out hover:text-body"
-            href={siteSettings.author.websiteUrl}
-          ></a>
+            href="https://www.kensoftware.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+            title={t("link-ken-software")}
+          >
+            <Image
+              src="/assets/images/ken.png"
+              alt="Ken Software - Web Development & Software Solutions"
+              width={130}
+              height={130}
+              priority
+              className="object-contain inline-block cursor-pointer hover:opacity-80 transition-opacity"
+            />
+          </a>
         </p>
 
         {payment && (
@@ -58,7 +61,6 @@ const Copyright: React.FC<CopyrightProps> = ({ payment, variant }) => {
                 key={`payment-list--key${item.id}`}
               >
                 <a href={item.path ? item.path : "/#"} target="_blank">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={item.image}
                     alt={t(`${item.name}`)}

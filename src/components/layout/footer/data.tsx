@@ -4,6 +4,7 @@ import {
   IoLogoTwitter,
   IoLogoFacebook,
   IoLogoYoutube,
+  IoLogoLinkedin,
 } from "react-icons/io5";
 import { SiGmail } from "react-icons/si";
 
@@ -19,12 +20,12 @@ export const footer = {
           path: "https://www.instagram.com/vikikfashion/?hl=en",
           icon: <IoLogoInstagram />,
         },
-        // {
-        //   id: 2,
-        //   title: "link-twitter",
-        //   path: "#",
-        //   icon: <IoLogoTwitter />,
-        // },
+        {
+          id: 2,
+          title: "link-linkedin",
+          path: "https://www.linkedin.com/company/vikikfashion/",
+          icon: <IoLogoLinkedin />,
+        },
         {
           id: 3,
           title: "link-facebook",
@@ -39,14 +40,14 @@ export const footer = {
       lists: [
         {
           id: 1,
-          title: "+96279060 0487",
+          title: "link-number",
           path: "/contact-us",
           icon: <FaPhoneAlt />,
         },
         {
           id: 2,
-          title: "+96279060 0487",
-          path: "https://wa.me/962790600487",
+          title: "link-number",
+          path: "https://wa.me/971506886449",
           icon: <FaWhatsapp />,
         },
         {
@@ -96,29 +97,5 @@ export const footer = {
       width: 50,
       height: 20,
     },
-    // {
-    //   id: 3,
-    //   path: "/",
-    //   image: "/assets/images/payment/paypal.svg",
-    //   name: "payment-paypal",
-    //   width: 76,
-    //   height: 20,
-    // },
-    // {
-    //   id: 4,
-    //   path: "/",
-    //   image: "/assets/images/payment/jcb.svg",
-    //   name: "payment-jcb",
-    //   width: 26,
-    //   height: 20,
-    // },
-    // {
-    //   id: 5,
-    //   path: "/",
-    //   image: "/assets/images/payment/skrill.svg",
-    //   name: "payment-skrill",
-    //   width: 39,
-    //   height: 20,
-    // },
   ],
 };

@@ -35,6 +35,7 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
   const [isClient, setIsClient] = useState(false);
   const [showAcvtive, setShowActive] = useState(0);
   const [orderId, setOrderId] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const { items, total } = useCart();
   const [payment, setPayment] = useState<any>(null);
   const [selectedAddress, setSelectedAddress] = useState<Address | null>(
@@ -90,6 +91,7 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
   const totalAll = total + Number(deliveryFees) - Number(coupon);
 
   async function onSubmit(input: CreateAndUpdateAddress) {
+    setIsLoading(true);
     if (selectedAddress && userId) {
       0;
       const createOrder = await CheckcOutCart(
@@ -114,8 +116,9 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
           setPayment(responsePayment);
           setOrderId(createOrder.OrderID);
           setShowActive(showAcvtive + 1);
+          setIsLoading(false);
         } else {
-          Router.push(ROUTES.ORDER + "?order=" + createOrder.OrderID);
+          Router.replace(ROUTES.ORDER + "?order=" + createOrder.OrderID);
         }
       }
     } else {
@@ -143,8 +146,9 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
             setPayment(responsePayment);
             setOrderId(createOrder.OrderID);
             setShowActive(showAcvtive + 1);
+            setIsLoading(false);
           } else {
-            Router.push(ROUTES.ORDER + "?order=" + createOrder.OrderID);
+            Router.replace(ROUTES.ORDER + "?order=" + createOrder.OrderID);
           }
         }
       }
@@ -290,9 +294,11 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
                 <div className="flex w-full gap-1 ">
                   <Button
                     className="w-full sm:w-auto"
-                    disabled={items.length == 0 ? true : false}
+                    disabled={isLoading || items.length == 0 ? true : false}
                   >
-                    {t("common:button-place-order")}
+                    {isLoading
+                      ? t("common:placing-order")
+                      : t("common:button-place-order")}
                   </Button>
                   <Button
                     type="button"
