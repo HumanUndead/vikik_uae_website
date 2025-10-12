@@ -1,15 +1,15 @@
-import Text from '@components/ui/text';
-import Input from '@components/ui/input';
-import Button from '@components/ui/button';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import { getDirection } from '@utils/get-direction';
+import Text from "@components/ui/text";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { getDirection } from "@utils/get-direction";
 
 const data = {
-  title: 'common:text-subscribe-heading',
-  description: 'common:text-subscribe-description',
-  buttonText: 'common:button-subscribe',
+  title: "common:text-subscribe-heading",
+  description: "common:text-subscribe-description",
+  buttonText: "common:button-subscribe",
 };
 
 interface Props {
@@ -21,11 +21,11 @@ type FormValues = {
 };
 
 const defaultValues = {
-  subscription_email: '',
+  subscription_email: "",
 };
 
 const SubscriptionWithBg: React.FC<Props> = ({
-  className = 'px-5 sm:px-8 md:px-16 2xl:px-24',
+  className = "px-5 sm:px-8 md:px-16 2xl:px-24",
 }) => {
   const {
     register,
@@ -38,9 +38,7 @@ const SubscriptionWithBg: React.FC<Props> = ({
   const dir = getDirection(locale);
   const { t } = useTranslation();
   const { title, description, buttonText } = data;
-  async function onSubmit(input: FormValues) {
-    console.log(input, 'data');
-  }
+  async function onSubmit(input: FormValues) {}
   return (
     <div
       className={`${className} relative overflow-hidden flex flex-col sm:items-center xl:items-start rounded-lg bg-gray-200 py-10 md:py-14 lg:py-16`}
@@ -68,12 +66,12 @@ const SubscriptionWithBg: React.FC<Props> = ({
             variant="solid"
             className="w-full"
             inputClassName="px-4 lg:px-7 h-12 lg:h-14 text-center ltr:sm:text-left rtl:sm:text-right bg-white"
-            {...register('subscription_email', {
-              required: 'forms:email-required',
+            {...register("subscription_email", {
+              required: "forms:email-required",
               pattern: {
                 value:
                   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: 'forms:email-error',
+                message: "forms:email-error",
               },
             })}
             errorKey={errors.subscription_email?.message}
@@ -86,14 +84,14 @@ const SubscriptionWithBg: React.FC<Props> = ({
       <div
         style={{
           backgroundImage:
-            dir === 'rtl'
-              ? 'url(/assets/images/subscription-bg-reverse.png)'
-              : 'url(/assets/images/subscription-bg.png)',
+            dir === "rtl"
+              ? "url(/assets/images/subscription-bg-reverse.png)"
+              : "url(/assets/images/subscription-bg.png)",
         }}
         className={`hidden z-0 xl:block bg-no-repeat ${
-          dir === 'rtl'
-            ? 'bg-left 2xl:-left-12 3xl:left-0'
-            : 'bg-right xl:-right-24 2xl:-right-20 3xl:right-0'
+          dir === "rtl"
+            ? "bg-left 2xl:-left-12 3xl:left-0"
+            : "bg-right xl:-right-24 2xl:-right-20 3xl:right-0"
         } bg-contain xl:bg-cover 3xl:bg-contain absolute h-full w-full top-0`}
       />
     </div>

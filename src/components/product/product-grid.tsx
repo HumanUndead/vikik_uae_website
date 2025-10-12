@@ -36,7 +36,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
     }
   }, [data?.products]);
 
-  const totalPages = Math.ceil(data?.pages / 20);
+  const totalPages = Math.ceil(data?.pages);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,7 +45,7 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
           setLoad(true);
           router.replace(
             {
-              pathname: `/${path}`,
+              pathname: path.startsWith("/") ? path : `/${path}`,
               query: {
                 ...query,
                 page: pageSize + 1,

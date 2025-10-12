@@ -30,7 +30,7 @@ import { Product } from "src/api/type";
 
 export function generateCartItem(item: Product) {
   const { ID, Name, FullImagePath, Price } = item;
-  console.log(item);
+
   return {
     id: ID,
     Image: FullImagePath,

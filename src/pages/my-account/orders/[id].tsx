@@ -12,7 +12,6 @@ interface OrderPageProps {
 }
 
 export default function OrderPage({ ordersDetails }: OrderPageProps) {
-  console.log(ordersDetails);
   return (
     <AccountLayout>
       <OrderDetails className="p-0" orders={ordersDetails} />

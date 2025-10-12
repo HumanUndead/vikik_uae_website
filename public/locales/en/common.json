@@ -246,5 +246,9 @@
   "please-fill-cart": "Please Fill Cart",
   "please-login": "Please sign in",
   "text-vikik": "Vikik – Shop Dresses, Tops & Abayas Online in United Arab Emirates",
-  "placing-order": "Placing order..."
+  "placing-order": "Placing order...",
+  "text-select-color-size": "Please select both color and size before adding to cart",
+  "text-select-color": "Select a color",
+  "text-select-size": "Select a size",
+  "text-select-color-and-size": "Select Color & Size"
 }

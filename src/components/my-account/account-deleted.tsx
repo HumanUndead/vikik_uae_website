@@ -26,7 +26,6 @@ const DeletedAccount: React.FC = () => {
     const fullPhoneNumber = `00${phone}`;
     setLoad(true);
     try {
-      console.log("Deleting account with:", { phone: fullPhoneNumber, email });
     } catch (error) {
       console.error("Error deleting account:", error);
     } finally {

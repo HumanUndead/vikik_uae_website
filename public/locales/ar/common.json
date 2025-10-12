@@ -244,5 +244,9 @@
   "please-fill-cart": "يرجى ملء السلة",
   "please-login": "يرجى تسجيل الدخول",
   "text-vikik": "فيكيك - تسوق فساتين وبلوزات وعبايات اون لاين في الإمارات العربية المتحدة",
-  "placing-order": "جارٍ تقديم الطلب..."
+  "placing-order": "جارٍ تقديم الطلب...",
+  "text-select-color-size": "يرجى اختيار اللون والمقاس قبل الإضافة إلى السلة",
+  "text-select-color": "اختر لون",
+  "text-select-size": "اختر مقاس",
+  "text-select-color-and-size": "اختر اللون والمقاس"
 }

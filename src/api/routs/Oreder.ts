@@ -19,7 +19,6 @@ export const UserOrderGet = async (
   orderId: string,
   langId: string
 ) => {
-  console.log(userId, orderId, langId);
   try {
     const data = await apiClient().post(
       `Services/UserOrderGet?uid=${userId}&orderID=${orderId}&langID=${langId}`

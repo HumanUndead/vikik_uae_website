@@ -28,7 +28,7 @@ export const CreateAddress = async (
       `Services/UserAddressSave?uid=${userId}&id=${id || 0}&name=${
         address.name
       }&address1=${address.address}&address2=${address.address}&country=${
-        address.country
+        address.country || "United Arab Emirates"
       }&city=${address.city}&phone1=${address.phone}&phone2=${
         address.phone
       }&postal=${address.postal || "11118"}&langID=${langId}`

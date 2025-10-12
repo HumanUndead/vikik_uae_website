@@ -1,13 +1,13 @@
-import Text from '@components/ui/text';
-import Input from '@components/ui/input';
-import Button from '@components/ui/button';
-import { useForm } from 'react-hook-form';
-import { useTranslation } from 'next-i18next';
+import Text from "@components/ui/text";
+import Input from "@components/ui/input";
+import Button from "@components/ui/button";
+import { useForm } from "react-hook-form";
+import { useTranslation } from "next-i18next";
 
 const data = {
-  title: 'common:text-subscribe-heading',
-  description: 'common:text-subscribe-description',
-  buttonText: 'common:button-subscribe',
+  title: "common:text-subscribe-heading",
+  description: "common:text-subscribe-description",
+  buttonText: "common:button-subscribe",
 };
 
 interface Props {
@@ -20,11 +20,11 @@ type FormValues = {
 };
 
 const defaultValues = {
-  subscription_email: '',
+  subscription_email: "",
 };
 
 const Subscription: React.FC<Props> = ({
-  className = 'px-5 sm:px-8 md:px-16 2xl:px-24',
+  className = "px-5 sm:px-8 md:px-16 2xl:px-24",
   disableBorderRadius = false,
 }) => {
   const {
@@ -36,9 +36,7 @@ const Subscription: React.FC<Props> = ({
   });
   const { t } = useTranslation();
   const { title, description, buttonText } = data;
-  async function onSubmit(input: FormValues) {
-    console.log(input, 'data');
-  }
+  async function onSubmit(input: FormValues) {}
   return (
     <div
       className={`${className} flex flex-col xl:flex-row justify-center xl:justify-between items-center rounded-lg bg-gray-200 py-10 md:py-14 lg:py-16`}
@@ -68,12 +66,12 @@ const Subscription: React.FC<Props> = ({
             variant="solid"
             className="w-full"
             inputClassName="px-4 lg:px-7 h-12 lg:h-14 text-center ltr:sm:text-left rtl:sm:text-right bg-white"
-            {...register('subscription_email', {
-              required: 'forms:email-required',
+            {...register("subscription_email", {
+              required: "forms:email-required",
               pattern: {
                 value:
                   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: 'forms:email-error',
+                message: "forms:email-error",
               },
             })}
             errorKey={errors.subscription_email?.message}

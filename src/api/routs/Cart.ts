@@ -20,7 +20,7 @@ export const CheckcOutCart = async (
         prodsjson
       )}&addressID=${addressID}&total=${total}&coupon=${finalCoupon}&Delivery=${deliveryAsNumber}&&notes=ss&usePoint=false`
     );
-    console.log(response.data);
+
     return response.data;
   } catch (error) {
     console.log("Error adding for cart ", error);

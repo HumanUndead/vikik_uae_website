@@ -124,7 +124,7 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
     } else {
       const craeteAddress = await CreateAddress(userId, input, lang);
 
-      if (craeteAddress.success == 1) {
+      if (craeteAddress?.success == 1) {
         const createOrder = await CheckcOutCart(
           userId,
           productsJson,
@@ -243,7 +243,7 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
                   variant="solid"
                   className="w-full lg:w-1/2 "
                 />
-                <div className="w-full lg:w-1/2 ltr:lg:ml-3 rtl:lg:mr-3 mt-2 md:mt-0 ">
+                {/* <div className="w-full lg:w-1/2 ltr:lg:ml-3 rtl:lg:mr-3 mt-2 md:mt-0 ">
                   <label className="block text-gray-600 font-semibold text-sm leading-none mb-3 cursor-pointer">
                     {t("forms:label-country")}
                   </label>
@@ -263,7 +263,17 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
                       {t(errors.country.message)}
                     </span>
                   )}
-                </div>
+                </div> */}
+                <SelectInput
+                  title="method-label"
+                  labelKey={t("forms:method-label")}
+                  options={methodDelivery}
+                  register={register}
+                  name="methodDelivery"
+                  validation={{ required: t("forms:methodDelivery-required") }}
+                  error={errors.methodDelivery?.message}
+                  className="w-full lg:w-1/2 ltr:lg:ml-3 rtl:lg:mr-3 mt-2 md:mt-0"
+                />
               </div>
               <div className="flex flex-col lg:flex-row space-y-4 lg:space-y-0">
                 <SelectInput
@@ -276,17 +286,6 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
                   error={errors?.city?.message}
                   onChange={handleSelectCity}
                   className="lg:w-1/2"
-                />
-
-                <SelectInput
-                  title="method-label"
-                  labelKey={t("forms:method-label")}
-                  options={methodDelivery}
-                  register={register}
-                  name="methodDelivery"
-                  validation={{ required: t("forms:methodDelivery-required") }}
-                  error={errors.methodDelivery?.message}
-                  className="w-full lg:w-1/2 ltr:lg:ml-3 rtl:lg:mr-3 mt-2 md:mt-0"
                 />
               </div>
 

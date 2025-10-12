@@ -73,7 +73,7 @@ export const footer = {
           path: "/terms",
         },
         {
-          id: 1,
+          id: 3,
           title: "common:text-delete-account",
           path: "/requestdelete",
         },

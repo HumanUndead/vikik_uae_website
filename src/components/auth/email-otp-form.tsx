@@ -36,7 +36,6 @@ const EmailOTPForm = () => {
 
   const onSubmit = async ({ OTP }: { OTP: string }) => {
     setLoad(true);
-    console.log(OTP)
   };
   return (
     <div className="py-6 px-5 sm:p-8 bg-white mx-auto rounded-lg w-full sm:w-96 md:w-450px border border-gray-300">

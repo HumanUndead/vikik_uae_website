@@ -63,9 +63,9 @@ const WidgetLink: FC<Props> = ({ className, data }) => {
             {description}
           </p>
           <ul className="text-xs lg:text-sm text-body flex items-center gap-x-3 lg:gap-x-3.5">
-            {lists.map((list) => (
+            {lists.map((list, index) => (
               <li
-                key={`widget-list--key${list.id}`}
+                key={`widget-company-list--key${list.id}-${index}`}
                 className="flex items-baseline"
               >
                 {list?.icon && (

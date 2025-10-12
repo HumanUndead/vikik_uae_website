@@ -47,10 +47,27 @@ export default function ProductPopup() {
   useEffect(() => {
     if (product) {
       setProductSelected(product.product);
+      // Set initial color selection to the first available color
+      const firstColor = Array.from(
+        ColorsAndSizesProduct(product?.sizes).values()
+      )[0]?.color;
+      if (firstColor && !selectedColor) {
+        setSelectedColor(firstColor);
+        setProductSelected(firstColor);
+      }
     }
   }, [product]);
 
   function addToCart() {
+    // Check if both color and size are selected
+    if (!selectedColor || !selectedSize) {
+      toast.error(t("text-select-color-size"), {
+        position: "top-right",
+        className: "!bg-white",
+      });
+      return;
+    }
+
     setAddToCartLoader(true);
     setTimeout(() => {
       setAddToCartLoader(false);
@@ -163,26 +180,24 @@ export default function ProductPopup() {
               </div>
 
               <div className="mb-4">
-                <div className="mb-2 text-sm font-medium">Color</div>
+                <div className="mb-2 text-sm font-medium">
+                  {t("color")}:{" "}
+                  {selectedColor?.Color?.Label || t("text-select-color")}
+                </div>
                 <div className="flex gap-3 mb-4">
                   {Array.from(colorMap.values()).map(({ color }) => {
-                    console.log(
-                      "selectedColor?.Color?.ID:",
-                      selectedColor?.Color?.ID,
-                      "color?.Color.ID:",
-                      color?.Color.ID,
-                      "equal:",
-                      selectedColor?.Color?.ID == color?.Color.ID
-                    );
+                    const isSelected =
+                      selectedColor?.Color?.ID === color?.Color.ID;
                     return (
                       <span
                         key={color?.Color?.ID}
-                        className={`w-7 h-7 rounded-full border cursor-pointer ${
-                          selectedColor?.Color?.ID == color?.Color.ID
-                            ? "ring-2 ring-black"
-                            : ""
+                        className={`w-8 h-8 rounded-full border-2 cursor-pointer transition-all ${
+                          isSelected
+                            ? "ring-2 ring-black ring-offset-2 border-gray-800"
+                            : "border-gray-300 hover:border-gray-500"
                         }`}
                         style={{ backgroundColor: color?.Color?.Value }}
+                        title={color?.Color?.Label}
                         onClick={() => {
                           setSelectedColor(color);
                           setProductSelected(color);
@@ -194,29 +209,36 @@ export default function ProductPopup() {
                 </div>
 
                 <>
-                  <div className="mb-2 text-sm font-medium">Sizes</div>
+                  <div className="mb-2 text-sm font-medium">
+                    {t("text-size")}:{" "}
+                    {selectedSize?.Size?.Label || t("text-select-size")}
+                  </div>
                   <ul className="flex flex-wrap gap-2">
                     {colorMap
                       .get(
                         selectedColor?.Color?.ID ||
                           Array.from(colorMap.values())[0]?.color?.Color?.ID
                       )
-                      ?.sizes.map((size, index) => (
-                        <li
-                          key={index}
-                          onClick={() => {
-                            setSelectedSize(size);
-                            setProductSelected(size);
-                          }}
-                          className={`px-3 py-1 border rounded text-sm cursor-pointer md:hover:bg-gray-100 ${
-                            selectedSize?.Size?.Value === size?.Size?.Value
-                              ? "bg-gray-400"
-                              : ""
-                          }`}
-                        >
-                          {size?.Size.Label}
-                        </li>
-                      ))}
+                      ?.sizes.map((size: any, index: number) => {
+                        const isSelected =
+                          selectedSize?.Size?.Value === size?.Size?.Value;
+                        return (
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setSelectedSize(size);
+                              setProductSelected(size);
+                            }}
+                            className={`px-3 py-2 border rounded text-sm cursor-pointer transition-all ${
+                              isSelected
+                                ? "bg-black text-white border-black"
+                                : "border-gray-300 hover:border-gray-500 hover:bg-gray-50"
+                            }`}
+                          >
+                            {size?.Size.Label}
+                          </li>
+                        );
+                      })}
                   </ul>
                 </>
               </div>
@@ -236,10 +258,25 @@ export default function ProductPopup() {
                       productSelected?.Quantity !== 0 ? addToCart : notAddCart
                     }
                     variant="flat"
-                    className={`w-full h-11 md:h-12 px-1.5 `}
+                    className={`w-full h-11 md:h-12 px-1.5 ${
+                      !selectedColor ||
+                      !selectedSize ||
+                      productSelected?.Quantity === 0
+                        ? "opacity-60 cursor-not-allowed"
+                        : ""
+                    }`}
                     loading={addToCartLoader}
+                    disabled={
+                      !selectedColor ||
+                      !selectedSize ||
+                      productSelected?.Quantity === 0
+                    }
                   >
-                    {t("text-add-to-cart")}
+                    {productSelected?.Quantity === 0
+                      ? t("outOfStock")
+                      : !selectedColor || !selectedSize
+                      ? t("text-select-color-and-size")
+                      : t("text-add-to-cart")}
                   </Button>
                 </div>
                 <div className="flex justify-between gap-2">

@@ -24,7 +24,6 @@ export const Collapse: React.FC<CollapseProps> = ({
   variant = "gray",
 }) => {
   const isOpen = i === expanded;
-  console.log(content);
 
   const { t } = useTranslation(translatorNS);
   return (

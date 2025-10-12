@@ -14,7 +14,6 @@ export default function ChangePasswordPage({
   address = [],
   cities = [],
 }: addressProps) {
-  console.log(cities);
   return (
     <AccountLayout>
       <AddressUser address={address} cities={cities} />
