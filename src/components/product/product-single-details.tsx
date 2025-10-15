@@ -9,7 +9,6 @@ import { SwiperSlide } from "swiper/react";
 import { useSsrCompatible } from "@utils/use-ssr-compatible";
 import { Product } from "src/api/type";
 import ColorsAndSizesProduct from "@utils/colors-sizes-product";
-import ProductMetaReview from "./product-meta-review";
 import { toast, ToastContainer } from "react-toastify";
 import { useTranslation } from "react-i18next";
 
@@ -38,9 +37,16 @@ const ProductSingleDetails: React.FC<productSingleDetailsProps> = ({
   const [selectedColor, setSelectedColor] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<Product | null>(null);
   const [productSelected, setProductSelected] = useState<any>(undefined);
-  const price = process.env.NEXT_PUBLIC_CURRENCY || "AED";
 
   function addToCart() {
+    if (!selectedColor || !selectedSize) {
+      toast.error(t("text-select-color-size"), {
+        position: "top-right",
+        className: "!bg-white",
+      });
+      return;
+    }
+
     setAddToCartLoader(true);
     setTimeout(() => {
       setAddToCartLoader(false);
@@ -52,6 +58,14 @@ const ProductSingleDetails: React.FC<productSingleDetailsProps> = ({
   useEffect(() => {
     if (data) {
       setProductSelected(data.product);
+      // Set initial color selection to the first available color
+      const firstColor = Array.from(
+        ColorsAndSizesProduct(data?.sizes).values()
+      )[0]?.color;
+      if (firstColor && !selectedColor) {
+        setSelectedColor(firstColor);
+        setProductSelected(firstColor);
+      }
     }
   }, [data]);
 
@@ -89,7 +103,6 @@ const ProductSingleDetails: React.FC<productSingleDetailsProps> = ({
             {productSelected?.Images?.split(",")?.map((item, index: number) => (
               <SwiperSlide key={`product-gallery-key-${index}`}>
                 <div className="col-span-1 transition duration-150 ease-in hover:opacity-90">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={
                       process.env.NEXT_PUBLIC_BASE_API_URL +
@@ -163,60 +176,74 @@ const ProductSingleDetails: React.FC<productSingleDetailsProps> = ({
             </div>
             <div className="flex items-center mt-5">
               <div className="text-heading font-bold text-base md:text-xl lg:text-2xl 2xl:text-4xl ltr:pr-2 rtl:pl-2 ltr:md:pr-0 rtl:md:pl-0 ltr:lg:pr-2 rtl:lg:pl-2 ltr:2xl:pr-0 rtl:2xl:pl-0">
-                {productSelected.Price} {price}
+                {productSelected.Price} JOD
               </div>
               {productSelected.OldPrice > 0 && (
                 <span className="line-through font-segoe text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl ltr:pl-2 rtl:pr-2">
-                  {productSelected.OldPrice} {price}
+                  {productSelected.OldPrice} JOD
                 </span>
               )}
             </div>
           </div>
           <div className="mb-4">
-            <div className="mb-2 text-sm font-medium">{t("color")}</div>
+            <div className="mb-2 text-sm font-medium">
+              {t("color")}:{" "}
+              {selectedColor?.Color?.Label || t("text-select-color")}
+            </div>
             <div className="flex gap-3 mb-4">
-              {Array.from(colorMap.values()).map(({ color }) => (
-                <span
-                  key={color?.Color?.ID}
-                  className={`w-7 h-7 rounded-full border cursor-pointer ${
-                    selectedColor?.Color?.ID == color?.Color.ID
-                      ? "ring-2 ring-black"
-                      : ""
-                  }`}
-                  style={{ backgroundColor: color?.Color?.Value }}
-                  onClick={() => {
-                    setSelectedColor(color);
-                    setProductSelected(color);
-                    setSelectedSize(null);
-                  }}
-                />
-              ))}
+              {Array.from(colorMap.values()).map(({ color }) => {
+                const isSelected = selectedColor?.Color?.ID === color?.Color.ID;
+                return (
+                  <span
+                    key={color?.Color?.ID}
+                    className={`w-8 h-8 rounded-full border-2 cursor-pointer transition-all ${
+                      isSelected
+                        ? "ring-2 ring-black ring-offset-2 border-gray-800"
+                        : "border-gray-300 hover:border-gray-500"
+                    }`}
+                    style={{ backgroundColor: color?.Color?.Value }}
+                    title={color?.Color?.Label}
+                    onClick={() => {
+                      setSelectedColor(color);
+                      setProductSelected(color);
+                      setSelectedSize(null);
+                    }}
+                  />
+                );
+              })}
             </div>
 
             <>
-              <div className="mb-2 text-sm font-medium">{t("sizes")}</div>
+              <div className="mb-2 text-sm font-medium">
+                {t("text-size")}:{" "}
+                {selectedSize?.Size?.Label || t("text-select-size")}
+              </div>
               <ul className="flex flex-wrap gap-2">
                 {colorMap
                   .get(
                     selectedColor?.Color?.ID ||
                       Array.from(colorMap.values())[0].color.Color.ID
                   )
-                  ?.sizes.map((size, index) => (
-                    <li
-                      key={index}
-                      onClick={() => {
-                        setSelectedSize(size);
-                        setProductSelected(size);
-                      }}
-                      className={`px-3 py-1 border rounded text-sm cursor-pointer md:hover:bg-gray-100 ${
-                        selectedSize?.Size?.Value === size?.Size?.Value
-                          ? "bg-gray-400"
-                          : ""
-                      }`}
-                    >
-                      {size?.Size.Label}
-                    </li>
-                  ))}
+                  ?.sizes.map((size: any, index: number) => {
+                    const isSelected =
+                      selectedSize?.Size?.Value === size?.Size?.Value;
+                    return (
+                      <li
+                        key={index}
+                        onClick={() => {
+                          setSelectedSize(size);
+                          setProductSelected(size);
+                        }}
+                        className={`px-3 py-2 border rounded text-sm cursor-pointer transition-all ${
+                          isSelected
+                            ? "bg-black text-white border-black"
+                            : "border-gray-300 hover:border-gray-500 hover:bg-gray-50"
+                        }`}
+                      >
+                        {size?.Size.Label}
+                      </li>
+                    );
+                  })}
               </ul>
             </>
           </div>
@@ -230,12 +257,29 @@ const ProductSingleDetails: React.FC<productSingleDetailsProps> = ({
               disableDecrement={quantity === 1}
             />
             <Button
-              onClick={productSelected.Quantity != 0 ? addToCart : notAddCart}
+              onClick={productSelected?.Quantity !== 0 ? addToCart : notAddCart}
               variant="slim"
-              className={`w-full md:w-6/12 xl:w-full`}
+              className={`w-full md:w-6/12 xl:w-full ${
+                !selectedColor ||
+                !selectedSize ||
+                productSelected?.Quantity === 0
+                  ? "opacity-60 cursor-not-allowed"
+                  : ""
+              }`}
               loading={addToCartLoader}
+              disabled={
+                !selectedColor ||
+                !selectedSize ||
+                productSelected?.Quantity === 0
+              }
             >
-              <span className="py-2 3xl:px-8">Add to cart</span>
+              <span className="py-2 3xl:px-8">
+                {productSelected?.Quantity === 0
+                  ? t("outOfStock")
+                  : !selectedColor || !selectedSize
+                  ? t("text-select-color-and-size")
+                  : t("text-add-to-cart")}
+              </span>
             </Button>
           </div>
 

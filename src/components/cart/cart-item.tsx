@@ -23,7 +23,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     currencyCode: process.env.NEXT_PUBLIC_CURRENCY,
   });
 
-  const code = process.env.NEXT_PUBLIC_CURRENCYL;
+  const code = process.env.NEXT_PUBLIC_CURRENCY;
 
   return (
     <motion.div

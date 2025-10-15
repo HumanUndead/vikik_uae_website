@@ -47,7 +47,7 @@ export default function ProductPopup() {
   useEffect(() => {
     if (product) {
       setProductSelected(product.product);
-      // Set initial color selection to the first available color
+
       const firstColor = Array.from(
         ColorsAndSizesProduct(product?.sizes).values()
       )[0]?.color;
@@ -59,7 +59,6 @@ export default function ProductPopup() {
   }, [product]);
 
   function addToCart() {
-    // Check if both color and size are selected
     if (!selectedColor || !selectedSize) {
       toast.error(t("text-select-color-size"), {
         position: "top-right",

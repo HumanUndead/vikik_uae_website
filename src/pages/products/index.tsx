@@ -16,11 +16,15 @@ import { GetProductsCategory } from "src/api/routs";
 import { getLocaleId } from "@utils/locale-mapping";
 import { prdoucstWithpages } from "src/api/type";
 import Head from "next/head";
+import { useState } from "react";
 interface categoryProps {
   categoryData: prdoucstWithpages;
 }
 export default function Products({ categoryData }: categoryProps) {
   const { t } = useTranslation("common");
+  const [productsCount, setProductsCount] = useState(
+    categoryData?.products.length || 0
+  );
 
   return (
     <>
@@ -53,8 +57,11 @@ export default function Products({ categoryData }: categoryProps) {
           </div>
 
           <div className="w-full ltr:lg:-ml-9 rtl:lg:-mr-9">
-            <SearchTopBar productsNumber={categoryData?.pages} />
-            <ProductGrid data={categoryData} />
+            <SearchTopBar productsNumber={productsCount} />
+            <ProductGrid
+              data={categoryData}
+              onProductsCountChange={setProductsCount}
+            />
           </div>
         </div>
         <Subscription />

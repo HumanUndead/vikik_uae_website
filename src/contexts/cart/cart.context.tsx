@@ -11,6 +11,7 @@ interface CartProviderState extends State {
   clearItemFromCart: (id: Product["ID"]) => void;
   getItemFromCart: (id: Product["ID"]) => any | undefined;
   isInCart: (id: Product["ID"]) => boolean;
+  resetCart: () => void;
   // updateCartMetadata: (metadata: Metadata) => void;
 }
 export const cartContext = React.createContext<CartProviderState | undefined>(
@@ -48,6 +49,7 @@ export const CartProvider: React.FC = (props) => {
     dispatch({ type: "REMOVE_ITEM_OR_QUANTITY", id });
   const clearItemFromCart = (id: Product["ID"]) =>
     dispatch({ type: "REMOVE_ITEM", id });
+  const resetCart = () => dispatch({ type: "RESET_CART" });
   const isInCart = (id: Product["ID"]) => !!getItem(state.items, id);
   const getItemFromCart = (id: Product["ID"]) => getItem(state.items, id);
 
@@ -60,6 +62,7 @@ export const CartProvider: React.FC = (props) => {
       clearItemFromCart,
       getItemFromCart,
       isInCart,
+      resetCart,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [state]

@@ -9,7 +9,7 @@ type SearchProductProps = {
 const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
   return (
     <Link
-      href={ROUTES.PRODUCT + "/" + item.Item1}
+      href={ROUTES.PRODUCT + "/" + item.Id + "?name=" + item.Name}
       className="flex items-center justify-start w-full h-auto group"
     >
       <div className="relative flex flex-shrink-0 w-24 h-24 overflow-hidden bg-gray-200 rounded-md cursor-pointer ltr:mr-4 rtl:ml-4">
@@ -17,9 +17,9 @@ const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
           src={
             process.env.NEXT_PUBLIC_BASE_API_URL +
             "content/products/" +
-            item.Item1 +
+            item.Id +
             "/" +
-            item.Item1 +
+            item.Id +
             "_300X360.png"
           }
           width={96}
@@ -31,8 +31,8 @@ const SearchProduct: React.FC<SearchProductProps> = ({ item }) => {
         />
       </div>
       <div className="flex flex-col w-full overflow-hidden">
-        <h3 className="mb-2 text-sm truncate text-heading">{item.Item2}</h3>
-        <div className="text-sm font-semibold text-heading">{item.item1}</div>
+        <h3 className="mb-2 text-sm truncate text-heading">{item.Name}</h3>
+        {/* <div className="text-sm font-semibold text-heading">{item.item1}</div> */}
       </div>
     </Link>
   );

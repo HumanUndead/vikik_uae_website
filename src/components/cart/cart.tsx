@@ -23,7 +23,7 @@ export default function Cart() {
   const { items, total, isEmpty } = useCart();
   const { price: cartTotal } = usePrice({
     amount: total,
-    currencyCode: "JOD",
+    currencyCode: "AED",
   });
 
   function handleLogin() {
@@ -67,7 +67,6 @@ export default function Cart() {
       <div className="flex flex-col justify-between w-full h-full">
         <div className="w-full flex justify-between items-center relative ltr:pl-5 ltr:md:pl-7 rtl:pr-5 rtl:md:pr-7 py-0.5 border-b border-gray-100">
           <h2 className="m-0 text-xl font-bold md:text-2xl text-heading">
-            {/* @ts-ignore */}
             {t("text-shopping-cart")}
           </h2>
           <button
@@ -97,7 +96,6 @@ export default function Cart() {
           >
             <EmptyCart />
             <h3 className="pt-8 text-lg font-bold text-heading">
-              {/* @ts-ignore */}
               {t("text-empty-cart")}
             </h3>
           </motion.div>

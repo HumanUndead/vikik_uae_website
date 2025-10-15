@@ -8,8 +8,13 @@ import { usePathname } from "next/navigation";
 interface ProductGridProps {
   className?: string;
   data: prdoucstWithpages;
+  onProductsCountChange?: (count: number) => void;
 }
-export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
+export const ProductGrid: FC<ProductGridProps> = ({
+  className = "",
+  data,
+  onProductsCountChange,
+}) => {
   const router = useRouter();
   const path = usePathname();
   const { query } = router;
@@ -72,6 +77,12 @@ export const ProductGrid: FC<ProductGridProps> = ({ className = "", data }) => {
       }
     };
   }, [pageSize, totalPages, load, query, router, path]);
+
+  useEffect(() => {
+    if (onProductsCountChange) {
+      onProductsCountChange(allProducts.length);
+    }
+  }, [allProducts.length, onProductsCountChange]);
 
   return (
     <>

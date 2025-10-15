@@ -55,14 +55,14 @@
   "birthDay": "تاريخ ميلادك ",
   "label-postal-code": "رمز بريدي",
   "label-country": "الدولة",
-  "method-label": "طريقة التسليم",
+  "method-label": "طريقة الدفع",
   "coupon-label": "كود خصم",
   "coupon-enter": "أدخل كود الخصم",
   "coupon-required": "كود الخصم مطلوب",
   "merge-account-message": "هل تريد دمج حسابك القديم مع حسابك الجديد لاستعادة نقاطك القديمة؟",
   "merge": "دمج",
   "cancel": "إلغاء",
-  "methodDelivery-required": "طريقة التوصيل مطلوبة",
+  "methodDelivery-required": "طريقة الدفع مطلوبة",
   "country-required": "الدولة مطلوبة",
   "city-required": "المدينة مطلوبة"
 }

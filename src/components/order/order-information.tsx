@@ -5,13 +5,15 @@ import { useTranslation } from "next-i18next";
 import { UserOrderGet } from "src/api/routs";
 import Cookies from "js-cookie";
 import { useLanguageCode } from "@utils/useTranslation";
+import { useCart } from "@contexts/cart/cart.context";
 
 import { useEffect, useState } from "react";
 import { methodDelivery } from "@settings/method-delivery";
 
 export default function OrderInformation({ orderId }: any) {
-  const [order, setOrder] = useState<string | undefined>(undefined);
+  const [order, setOrder] = useState<any>(undefined);
   const price = process.env.NEXT_PUBLIC_CURRENCY || "AED";
+  const { resetCart } = useCart();
 
   const fetchOrder = async () => {
     const orderDetails = await UserOrderGet(
@@ -20,7 +22,13 @@ export default function OrderInformation({ orderId }: any) {
       lang
     );
     setOrder(orderDetails);
-    return order;
+
+    // Clear the cart after successful order placement
+    if (orderDetails) {
+      resetCart();
+    }
+
+    return orderDetails;
   };
 
   useEffect(() => {

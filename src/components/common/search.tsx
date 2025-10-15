@@ -113,7 +113,7 @@ export default function Search() {
                     {data.length >= 0 ? (
                       data?.map((item: any, index: number) => (
                         <div
-                          key={item.key}
+                          key={item.Id}
                           className=" p-5 border-b border-gray-150 relative last:border-b-0"
                           onClick={closeSearch}
                         >

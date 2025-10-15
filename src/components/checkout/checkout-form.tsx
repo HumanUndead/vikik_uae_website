@@ -243,27 +243,7 @@ const CheckoutForm: React.FC<CheckoutProps> = ({ address, cities }) => {
                   variant="solid"
                   className="w-full lg:w-1/2 "
                 />
-                {/* <div className="w-full lg:w-1/2 ltr:lg:ml-3 rtl:lg:mr-3 mt-2 md:mt-0 ">
-                  <label className="block text-gray-600 font-semibold text-sm leading-none mb-3 cursor-pointer">
-                    {t("forms:label-country")}
-                  </label>
-                  <select
-                    {...register("country", {
-                      required: "forms:country-required",
-                    })}
-                    className="py-2 px-4 md:px-5 w-full appearance-none transition duration-150 ease-in-out border text-input text-xs lg:text-sm font-body placeholder-body min-h-12 bg-white border-gray-300 focus:outline-none focus:border-heading h-11 md:h-12 rounded-md !text-gray-700"
-                  >
-                    <option value="" disabled hidden>
-                      {t("common:select-label")}
-                    </option>
-                    <option value="Jordan">{t("common:Jordan")}</option>
-                  </select>
-                  {errors?.country?.message && (
-                    <span className="text-red-500 text-xs">
-                      {t(errors.country.message)}
-                    </span>
-                  )}
-                </div> */}
+              
                 <SelectInput
                   title="method-label"
                   labelKey={t("forms:method-label")}
