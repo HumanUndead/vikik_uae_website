@@ -19,12 +19,12 @@ export default function Layout({ children }: React.PropsWithChildren<{}>) {
           },
         ]}
         title="Vikik"
-        description="https://vikikfashion.com"
+        description="https://uae.vikikfashion.com/"
         canonical="/assets/images/logo-vikik.png"
         openGraph={{
-          url: "https://vikikfashion.com/assets/images/logo-vikik.png",
-          title: "https://vikikfashion.com",
-          description: "https://vikikfashion.com",
+          url: "https://uae.vikikfashion.com/assets/images/logo-vikik.png",
+          title: "https://uae.vikikfashion.com/",
+          description: "https://uae.vikikfashion.com/",
         }}
       />
       {paymentPage ? "" : <Header home={isHomePage} />}

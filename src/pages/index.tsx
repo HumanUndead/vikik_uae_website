@@ -16,10 +16,7 @@ export default function Home({ category }: { category: any }) {
     <>
       <Head>
         <title>{t("text-vikik")}</title>
-        <meta
-          name="description"
-          content="Shop the latest dresses, tops, and abayas at Vikik. Enjoy exclusive offers, loyalty points, and fast delivery across Jordan from our online fashion store"
-        />
+        <meta name="description" content={t("text-vikik-description")} />
       </Head>
       <Container>
         <CategoryBlock
