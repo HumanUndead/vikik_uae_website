@@ -125,7 +125,7 @@ export default function ProductPopup() {
                 src={
                   process.env.NEXT_PUBLIC_BASE_API_URL +
                   productSelected?.FullImagePath +
-                  "_600X720.jpg"
+                  ".jpg"
                 }
                 width={600}
                 height={720}

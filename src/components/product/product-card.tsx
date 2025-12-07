@@ -114,7 +114,7 @@ const ProductCard: FC<ProductProps> = ({
           src={
             process.env.NEXT_PUBLIC_BASE_API_URL +
             product.FullImagePath +
-            "_467X619.jpg"
+            ".jpg"
           }
           width={demoVariant === "ancient" ? 600 : Number(imgWidth)}
           height={demoVariant === "ancient" ? 720 : Number(imgHeight)}

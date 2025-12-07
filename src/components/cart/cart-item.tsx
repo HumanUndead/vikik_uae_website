@@ -40,7 +40,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           src={
             process.env.NEXT_PUBLIC_BASE_API_URL +
             item.FullImagePath +
-            "_300X360.jpg"
+            "_300X360.png"
           }
           width={112}
           height={112}
