@@ -28,11 +28,6 @@ const Card: React.FC<Props> = ({
 }) => {
   const { name, FullImagePath } = item ?? {};
 
-  const imageSize: any =
-    (imgSize === "large" && 375) ||
-    (size === "small" && 180) ||
-    (size === "medium" && 198);
-
   const { t } = useTranslation("common");
   return (
     <Link
@@ -47,7 +42,7 @@ const Card: React.FC<Props> = ({
             src={
               process.env.NEXT_PUBLIC_BASE_API_URL +
               FullImagePath +
-              "_600X600.webp"
+              "_450X530.webp"
             }
             alt={name || t("text-card-thumbnail")}
             fill

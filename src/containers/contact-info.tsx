@@ -60,12 +60,7 @@ const ContactInfoBlock: FC<Props> = ({ res }) => {
           <h5 className="text-sm font-bold text-heading">
             {t(`common:${data[1]?.name}`)}
           </h5>
-          <span
-            style={{ unicodeBidi: "bidi-override" }}
-            className="text-sm mt-0"
-          >
-            {res?.Name}
-          </span>
+          <span className="text-sm mt-0">{res?.Name}</span>
         </div>
       </div>
       <div className="flex pb-7">
@@ -76,12 +71,7 @@ const ContactInfoBlock: FC<Props> = ({ res }) => {
           <h5 className="text-sm font-bold text-heading">
             {t(`common:${data[2]?.name}`)}
           </h5>
-          <span
-            style={{ unicodeBidi: "bidi-override" }}
-            className="text-sm mt-0"
-          >
-            {res?.Title}
-          </span>
+          <span className="text-sm mt-0">{res?.Title}</span>
         </div>
       </div>
       <Image
